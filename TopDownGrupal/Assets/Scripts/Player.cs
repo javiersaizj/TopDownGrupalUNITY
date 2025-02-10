@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float velocidadMovimiento;
     [SerializeField] private float radioInteraccion;
-    [SerializeField] private LayerMask queEsColisionable;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,6 +80,25 @@ public class Player : MonoBehaviour
         {
             inputV = Input.GetAxisRaw("Vertical");
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            LanzarInteraccion();
+        }
+
+    }
+
+    private void LanzarInteraccion()
+    {
+        colliderDelante = LanzarCheck();
+
+        if (colliderDelante)
+        {
+            if (colliderDelante.gameObject.CompareTag("NPC"))
+            {
+                NPC npcScript = colliderDelante.gameObject.GetComponent<NPC>();
+                npcScript.Interactuar();
+            }
+        }
     }
 
     IEnumerator Mover()
@@ -99,7 +117,7 @@ public class Player : MonoBehaviour
 
     private Collider2D LanzarCheck()
     {
-        return Physics2D.OverlapCircle(puntoInteraccion, radioInteraccion, queEsColisionable);
+        return Physics2D.OverlapCircle(puntoInteraccion, radioInteraccion);
     }
     private void OnDrawGizmos()
     {
