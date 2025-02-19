@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float velocidadMovimiento;
     [SerializeField] private float radioInteraccion;
+    [SerializeField] private SistemaInventario sistemaInventario;
     // Start is called before the first frame update
     void Start()
     {
@@ -97,6 +98,14 @@ public class Player : MonoBehaviour
             {
                 NPC npcScript = colliderDelante.gameObject.GetComponent<NPC>();
                 npcScript.Interactuar();
+
+            } else if (colliderDelante.gameObject.CompareTag("Item"))
+            {
+                colliderDelante.GetComponent<Item>().Interactuar();
+
+            } else if (colliderDelante.gameObject.CompareTag("Shop"))
+            {
+                colliderDelante.GetComponent<Shop>().Interactuar();
             }
         }
     }

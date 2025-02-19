@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class SistemaInventario : MonoBehaviour
 {
     [SerializeField] private GameObject marcoInventario;
     [SerializeField] private Button[] botones;
-    private int itemsDisponibles = 0;
+    private int itemsCollected = 0;
+
+    private List<ItemSO> items = new List<ItemSO>();
     // Start is called before the first frame update
     void Start()
     {
@@ -21,14 +24,15 @@ public class SistemaInventario : MonoBehaviour
 
     private void BotonClickado(int indice)
     {
-        Debug.Log("Boton click" + indice);
+        
     }
 
     public void NuevoItem(ItemSO datos)
     {
-        botones[itemsDisponibles].gameObject.SetActive(true);
-        botones[itemsDisponibles].GetComponent<Image>().sprite = datos.icono;
-        itemsDisponibles++;
+        items.Add(datos);
+        botones[itemsCollected].gameObject.SetActive(true);
+        botones[itemsCollected].GetComponent<Image>().sprite = datos.icono;
+        itemsCollected++;
     }
     // Update is called once per frame
     void Update()

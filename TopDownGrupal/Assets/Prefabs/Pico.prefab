@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1628106388116380210}
   m_Layer: 0
   m_Name: Pico
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   misDatos: {fileID: 11400000, guid: e54f6bacdf13193428f9b643b65ad9e9, type: 2}
+  gameManager: {fileID: 11400000, guid: 762d4a77bf83cfc48b0932d85f41986d, type: 2}
 --- !u!61 &7039375100565809236
 BoxCollider2D:
   m_ObjectHideFlags: 0
