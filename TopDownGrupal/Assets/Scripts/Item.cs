@@ -7,6 +7,7 @@ public class Item : MonoBehaviour
     public void Interactuar()
     {
         gameManager.Inventario.NuevoItem(misDatos);
+        AudioManager.Instance.PlaySFX(2);
         Destroy(this.gameObject);
     }
 }

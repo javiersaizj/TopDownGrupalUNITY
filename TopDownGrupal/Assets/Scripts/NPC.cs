@@ -34,6 +34,8 @@ public class NPC : MonoBehaviour
 
     private void SiguienteFrase()
     {
+        AudioManager.Instance.PlaySFX(5);
+
         indiceActual++;
         if (indiceActual >= frases.Length)
         {

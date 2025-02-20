@@ -39,6 +39,11 @@ public class SistemaInventario : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.I))
         {
+            if (!marcoInventario.activeSelf)
+                AudioManager.Instance.PlaySFX(0);
+            else
+                AudioManager.Instance.PlaySFX(1);
+
             marcoInventario.SetActive(!marcoInventario.activeSelf);
         }
     }

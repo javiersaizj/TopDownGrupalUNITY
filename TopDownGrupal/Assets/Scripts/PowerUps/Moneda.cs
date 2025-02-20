@@ -8,6 +8,8 @@ public class Moneda : PowerUp
     public override void Interactuar()
     {
         gameManager.AddCoins(coinValue);
+        AudioManager.Instance.PlaySFX(3);
+
         Destroy(gameObject);
     }
 }

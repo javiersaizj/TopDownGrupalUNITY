@@ -55,6 +55,8 @@ public class Shop : MonoBehaviour
     {
         if (gameManager.CanBuy(item.precio))
         {
+            AudioManager.Instance.PlaySFX(4);
+
             gameManager.RemoveCoins(item.precio);
             UpdateCoinText();
             Debug.Log("Purchased: " + item.name);
