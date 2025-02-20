@@ -5,7 +5,6 @@ public class Player : MonoBehaviour
 {
     private float inputH;
     private float inputV;
-    private bool moviendo;
     private Vector3 puntoDestino;
     private Vector3 ultimoInput;
     private Vector3 puntoInteraccion;
@@ -16,7 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float velocidadMovimiento;
     [SerializeField] private float radioInteraccion;
     [SerializeField] private SistemaInventario sistemaInventario;
-    // Start is called before the first frame update
+    [HideInInspector] public bool moviendo;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
 
             colliderDelante = LanzarCheck();
 
-            if (colliderDelante == false)
+            if (colliderDelante == null || colliderDelante.tag == "Door")
             {
                 StartCoroutine(Mover());
             }
@@ -135,6 +135,5 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(puntoInteraccion, radioInteraccion);
-
     }
 }
