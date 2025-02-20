@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,8 +8,6 @@ using UnityEngine.UI;
  */
 public class Shop : MonoBehaviour
 {
-    /** Cantidad de monedas que tiene el jugador. */
-    [SerializeField] private int playerCoins;
     /** Texto UI que muestra la cantidad de monedas del jugador. */
     [SerializeField] private TextMeshProUGUI coinText;
     /** Lista de objetos disponibles en la tienda. */
@@ -22,6 +18,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private Button[] botones;
     /** Interfaz de usuario del inventario**/
     [SerializeField] private SistemaInventario inventario;
+    [SerializeField] private GameManagerSO gameManager;
 
     /** Inicializa la tienda, ocultándola y cargando los productos. */
     private void Start()
@@ -34,7 +31,7 @@ public class Shop : MonoBehaviour
     /** Actualiza el texto de la cantidad de monedas. */
     void UpdateCoinText()
     {
-        coinText.text = "Coins: " + playerCoins;
+        coinText.text = "Coins: " + gameManager.PlayerCoins;
     }
 
     /** Llena la tienda con los objetos disponibles. */
@@ -56,9 +53,9 @@ public class Shop : MonoBehaviour
      */
     public void PurchaseItem(ItemSO item)
     {
-        if (playerCoins >= item.precio)
+        if (gameManager.CanBuy(item.precio))
         {
-            playerCoins -= item.precio;
+            gameManager.RemoveCoins(item.precio);
             UpdateCoinText();
             Debug.Log("Purchased: " + item.name);
             inventario.NuevoItem(item);
@@ -73,6 +70,7 @@ public class Shop : MonoBehaviour
     public void Interactuar()
     {
         shopUI.SetActive(true);
+        UpdateCoinText();
     }
 
     // Update is called once per frame

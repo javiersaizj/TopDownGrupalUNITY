@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -99,11 +98,16 @@ public class Player : MonoBehaviour
                 NPC npcScript = colliderDelante.gameObject.GetComponent<NPC>();
                 npcScript.Interactuar();
 
-            } else if (colliderDelante.gameObject.CompareTag("Item"))
+            }
+            else if (colliderDelante.gameObject.CompareTag("Item"))
             {
                 colliderDelante.GetComponent<Item>().Interactuar();
-
-            } else if (colliderDelante.gameObject.CompareTag("Shop"))
+            }
+            else if (colliderDelante.gameObject.CompareTag("PowerUp"))
+            {
+                colliderDelante.GetComponent<PowerUp>().Interactuar();
+            }
+            else if (colliderDelante.gameObject.CompareTag("Shop"))
             {
                 colliderDelante.GetComponent<Shop>().Interactuar();
             }
@@ -121,7 +125,7 @@ public class Player : MonoBehaviour
         }
         //Ante nuevo destino, necesito refrescar de nuevo puntoInteraccion
         puntoInteraccion = transform.position + ultimoInput;
-        moviendo= false;
+        moviendo = false;
     }
 
     private Collider2D LanzarCheck()
