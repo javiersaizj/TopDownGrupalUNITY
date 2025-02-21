@@ -9,6 +9,7 @@ TagManager:
   - Shop
   - PowerUp
   - Door
+  - Coin
   layers:
   - Default
   - TransparentFX

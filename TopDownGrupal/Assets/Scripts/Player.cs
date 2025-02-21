@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
 
             colliderDelante = LanzarCheck();
 
-            if (colliderDelante == null || colliderDelante.tag == "Door")
+            if (colliderDelante == null || colliderDelante.tag == "Door" || colliderDelante.tag == "Coin")
             {
                 StartCoroutine(Mover());
             }
@@ -104,6 +104,10 @@ public class Player : MonoBehaviour
                 colliderDelante.GetComponent<Item>().Interactuar();
             }
             else if (colliderDelante.gameObject.CompareTag("PowerUp"))
+            {
+                colliderDelante.GetComponent<PowerUp>().Interactuar();
+            }
+            else if (colliderDelante.gameObject.CompareTag("Coin"))
             {
                 colliderDelante.GetComponent<PowerUp>().Interactuar();
             }
